@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>CUSTOME</title>
+ <style type="text/css">
+ .check{
+     cursor:pointer;
+     margin:5px;
+     width:31px;
+     height:31px;
+     display: block;
+     margin-top:10px;
+ }
+
+ .check .mark{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background-color:#000;
+  display:block;
+  cursor:pointer;
+  position: absolute;
+   }
+
+  .check input:checked +span{
+     background:#0099FF;
+  }
+  .check input:checked +span:after{
+      content:" ";
+      position: absolute;
+      width:12px;
+      height:12px;
+      background-color:#fff;
+      border-radius:50%;
+      z-index: 2;
+      top:30%;
+      left:25%;
+      right:25%;
+
+  }
+
+ </style>
+</head>
+
+<body>
+ <div class='check'>
+     <input type="radio" checked="checked" name="aa" />
+     <span class="mark"></span>
+ </div>
+  <div class='check'>
+     <input type="radio" name="aa" />
+     <span class="mark"></span>
+ </div>
+  <div class='check'>
+     <input type="radio"  name="aa"/>
+     <span class="mark"></span>
+ </div>
+   <div class='check'>
+     <input type="radio"  name="aa"/>
+     <span class="mark"></span>
+ </div>
+    <div class='check'>
+     <input type="radio"  />
+     <span class="mark"></span>
+ </div>
+<script type="text/javascript">
+$(document).ready(function(){
+
+ checkBox=$(".check").has("input");
+
+ for(i=0;i<checkBox.length;i++)
+ {
+ pos=$(checkBox[i]).position();
+$(checkBox[i]).children(".mark").css("top",pos.top)
+$(checkBox[i]).children(".mark").css("right",pos.right)
+$(checkBox[i]).children(".mark").css("left",pos.left)
+$(checkBox[i]).children(".mark").css("bottom",pos.bottom)
+}
+$(checkBox).click(function(){
+    nameInput= $(this).children("input").attr("name");
+    //sameInput=$(".check").has("input[name="+nameInput+"]");
+    $("input[name="+nameInput+"]").prop("checked",false)
+    $(this).children("input").prop("checked",true);
+
+})
+
+
+
+})
+</script>
+</body>
+
+</html>
